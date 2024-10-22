@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: distributhor/workflow-webhook
         with:
-          url: "https://i31alzlaca.execute-api.us-east-1.amazonaws.com/dev"
+          url: "https://i31alzlaca.execute-api.us-east-1.amazonaws.com/dev/r1"
           json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}"}'
