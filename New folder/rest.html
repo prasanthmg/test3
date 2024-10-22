@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>my site</title>
+</head>
+<body>
+	<button onclick="httpGet()">press me to send</button>
+	<p id="response_text">nothing to see</p>
+</body>
+<script type="text/javascript">
+	function httpGet()
+	{	
+		// theUrl = 'https://liqrekop65bcijxxpahidkuziq0qkuor.lambda-url.us-east-1.on.aws/'
+		theUrl = 'https://i31alzlaca.execute-api.us-east-1.amazonaws.com/dev/r1' 
+		//theUrl = 'https://olnxogtu6a.execute-api.us-east-1.amazonaws.com/api/agent-activity-report?orgid=6303799460cda65e94022947&start_date=2022-11-03&end_date=2022-11-04'
+		// theUrl = "https://f362ra7zu3.execute-api.us-east-1.amazonaws.com/prod/reports"
+		// queryString = 'user_id=prasanth.mg@readyly.com&dates=2022-07-29,2022-07-30,2022-07-31,2022-08-01,2022-08-02,2022-08-03,2022-08-04'
+		// queryString = '?orgid=623c0630ecd09b16265bb5df&start_date=06-13-2022&end_date=06-27-2022&start_time=18:30&end_time=07:45'
+		// queryString = '?fetchOptions='
+		// theUrl += queryString
+		// queryString = JSON.stringify({"targetURL":"https://support.dashlane.com/hc/en-us/articles/360014017520-iOS-app-updates","type":"DOCUMENT","puppeteerOptions":{"baseURL":"https:support.dashlane.com"}})
+		// theUrl += encodeURIComponent(queryString)
+		// theUrl += queryString
+	    var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.open( "POST", theUrl, false ); // false for synchronous request
+	    // xmlHttp.setRequestHeader("X-API-Key", "QaZo1qFPJM5bSslbCTM9W5hGKhFJWzko5felEegJ");
+// 	    var bd = {
+//   "user": {
+//     "org_id": "mmddayu3287eyq87ey2873eygfghhfg28ey",
+//     "role": "agent",
+//     "isAuthenticated": "true"
+//   },
+//   "article": {
+//     "org_id": "mmddayu3287eyq87ey2873eygfghhfg28ey",
+//     "title": "How to create an article",
+//     "keywords": "",
+//     "access": "private/agent",
+//     "description": "<div><h1>Title</h1><p>I now know how to create a knowledge article</p></div>",
+//     "externalLink": ""
+//   }
+// }
+	 //    var bd = {
+  // queryStringParameters: {
+  //   orgid: "623c0630ecd09b16265bb5df",
+  //   start_date: "04-12-2022",
+  //   end_date: "04-18-2022",
+  //   start_time: "12:31",
+  //   end_time: "08:32"
+  // }
+// }
+// 	    var bd = {
+//   user_role: "agent",
+//   org_id: "2893u9283eugfhfg892dgfdgd3fgfgdefsdttgdrgdg3gsdgsg",
+//   article: {
+//     id: "hwueh82y8282",
+//     title: "how to create an article",
+//     tags: "",
+//     access: "private/user",
+//     description: "<div><h1>Title</h1><p>Some content</p></div>"
+//   }
+// }
+	    var bd = {
+  "orgid": "5e9706c43ee0632bad80b887",
+  "sync_frequency": 5,
+  "cap_frequency": 1,
+  "user_id":"kritik.jain@readyly.com"
+}
+	    // var bd = {
+	    // 	'ticket':{
+	    // 		'orgid': 1,
+	    // 		'ticket_id': 2
+	    // 	}
+	    // }
+
+
+	    // xmlHttp.send(bd);
+	    xmlHttp.send(JSON.stringify(bd));
+	    // xmlHttp.send(null);
+
+	    // xmlHttp.send(JSON.parse(bd))
+	    document.getElementById('response_text').innerHTML = xmlHttp.responseText;
+	    // return xmlHttp.responseText;
+	}
+</script>
+</html>
