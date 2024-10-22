@@ -1,0 +1,13 @@
+name: push main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  regression-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: distributhor/workflow-webhook
+        with:
+          url: "https://i31alzlaca.execute-api.us-east-1.amazonaws.com/dev"
+          json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
