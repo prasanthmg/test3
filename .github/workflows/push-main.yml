@@ -7,4 +7,4 @@ jobs:
   regression-test:
     runs-on: ubuntu-latest
     steps:
-      - run: curl -X POST https://i31alzlaca.execute-api.us-east-1.amazonaws.com/dev/r1 -H 'Content-Type:application/json' -d '{"login":"my_login","password":"new_password"}'
+      - run: curl -X POST https://i31alzlaca.execute-api.us-east-1.amazonaws.com/dev/r1 -H 'x-api-key:N6ndiW1W3925tcqckW6Dx5kzBGozx6ay4rfbb3oh' -d '{"login":"my_login","password":"news_password"}'
