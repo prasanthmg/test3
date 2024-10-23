@@ -4,7 +4,16 @@ on:
     branches:
       - main
 jobs:
+  fetch-pr-no:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Pull Request Number
+        id: pr
+        run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo ${{ steps.pr.outputs.pull_request_number }}
   regression-test:
     runs-on: ubuntu-latest
     steps:
-      - run: curl -X POST https://i31alzlaca.execute-api.us-east-1.amazonaws.com/dev/r1 -H 'x-api-key:N6ndiW1W3925tcqckW6Dx5kzBGozx6ay4rfbb3oh' -d '{"login":"my_login","password":"news_password"}'
+      - run: curl -X POST https://s1l357fawa.execute-api.us-east-1.amazonaws.com/dev/r1 -H 'x-api-key:N6ndiW1W3925tcqckW6Dx5kzBGozx6ay4rfbb3oh' -d '{"login":"my_login","password":"news_password"}'
