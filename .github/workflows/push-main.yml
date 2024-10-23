@@ -1,25 +1,24 @@
-name: push main
-on:
-  push:
-    branches:
-      - main
+name: Get PR Number on PUSH event
+
+on: [push, pull_request]
+
 jobs:
-  fetch-pr-no:
-    permissions:
-      pull-requests:
-        read
+  push:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
       - name: Get Pull Request Number
         id: pr
-        run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
+        run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: echo ${{ steps.pr.outputs.pull_request_number }}
-  regression-test:
+
+  pull-request:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - run: curl -X POST https://s1l357fawa.execute-api.us-east-1.amazonaws.com/dev/r1 -H 'x-api-key:N6ndiW1W3925tcqckW6Dx5kzBGozx6ay4rfbb3oh' -d '{"login":"my_login","password":"news_password"}'
+      - run: echo ${{ github.event.number }}
