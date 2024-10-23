@@ -5,6 +5,9 @@ on:
       - main
 jobs:
   fetch-pr-no:
+    permissions:
+      pull-requests:
+        read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
